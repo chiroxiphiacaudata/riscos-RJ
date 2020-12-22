@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>Rio de Janeiro - Raça/cor nas áreas de risco</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Coloque todos o meta que vocês gostam -->
+  <!-- Para fazer Leaflet servir -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin="" />
+  <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js" integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og==" crossorigin=""></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+  <!-- Adicione uma bela fonte -->
+  <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+  <!-- E seu jeito -->
+  <link href='./css/style.css' rel='stylesheet' />
+  <style type="text/css">
+    /* Se seu css não for o bastante, junte o que você precisa aqui */
+  </style>
+</head>
+
+<body>
+  <div id="map"></div>
+
+  <!-- sidebar -->
+  <div id='console'>
+    <h1 style="text-transform: uppercase;">Entenda a relação geográfica entre as áreas de risco e a raça/cor d(x)s morador(x)s</h1>
+    <h2 id='description' style="font-size:12px;">Os mapas têm demonstrado a presença de desigualdade espacial produzida pela segregação racial dentro da região do Rio de Janeiro. Mas quais são as origens de risco enfrentadas pel(x)s morador(x)s?</br>
+      Neste mapa, você pode ver alguns destes riscos. Não é perfeito, faltam muitas coisas, mas é uma forma de compreender a cidade, tentar definir as prioridades e construir estratégias.</br>
+      Mande um oi para chiroxiphia@protonmail.com se vocês gostariam de trabalhar juntos neste mapa.</br></br>
+      <a href=""><i>ENGLISH</i> →</a></h2>
+
+    <h2 id='descer'>↓</h2>
+
+    <!-- basemap -->
+    <div id='risco'>
+      <h2 id=''><b>O que você encontra no mapa base?</b></br>Cada ponto colorido representa um morador(a). A cor depende de como você respondeu à questão " de qual raça ou cor você é " para o censo de 2010 (Branco, Preto, Amarelo, Pardo ou
+        Indígena). Os dados são antigos, mas já aguardamos o Censo Demográfico em 2021</h2>
+
+      <div style=''>
+        <div class='row' style="text-align: center;"><b style='font-size:12px;align:center;'>1 ponto = 1 morador(a)</b></div>
+        <div class='row' style="text-align: center;">
+          <div class='label'>
+            <div class="dot color4EB1C4"></div><br>Branca
+          </div>
+          <div class='label'>
+            <div class="dot color964F48"></div><br>Preta
+          </div>
+          <div class='label'>
+            <div class="dot colorA66481"></div><br>Amarela
+          </div>
+          <div class='label'>
+            <div class="dot color997CA6"></div><br>Parda
+          </div>
+          <div class='label'>
+            <div class="dot color7897BF"></div><br>Indigena
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- nívels -->
+    <div id='risco'>
+
+      <h2 id=''><b>Quais níveis você pode consultar?</b></br>Os níveis que você encontra neste mapa são apenas algumas das possíveis origens de risco. Trabalhamos juntos para identificar outros níveis, relacioná-los e planejar a gestão desses
+        riscos.</br></br></br><i>Selecione o nível:</i></h2>
+
+      <div id="legend"></div>
+
+      <h2 id=''><i>Legenda:</i></br></br></h2>
+
+
+      <!-- Um novo nível começa aqui -->
+      <button class="accordion">Nível 1 / Área passível de ser atingida por fenômenos ou processos naturais (área de risco BATER)</button>
+      <div class="panel">
+        <p>O IBGE e o Centro Nacional de Monitoramento e Alerta de Desastres Naturais - CEMADEN definem a área de risco como área passível de ser atingida por fenômenos ou processos naturais e/ou induzidos que causem efeito adverso. As pessoas que
+          habitam essas áreas estão sujeitas a danos à integridade física, perdas materiais e patrimoniais</p>
+        <div class='label2'>
+          <div class="square"></div><br>Área de risco BATER
+        </div>
+        <p style="font-size:11px;"><i>IBGE, População em áreas de risco no Brasil 2018</i></p>
+        <p>Para cada geometria são fornecidos o número total de moradorxs e a porcentagem por raça/cor.</br></p>
+      </div>
+
+
+      <!-- Um novo nível começa aqui -->
+      <button class="accordion">Nível 2 / Tiroteios que deixaram civis e/ou agentes de segurança mortos e/ou feridos. </button>
+      <div class="panel">
+        <p>O Fogo Cruzado é uma plataforma digital colaborativa que registra dados de violência armada nas regiões metropolitanas do Rio de Janeiro e de Recife.</p>
+        <div class='label2'>
+          <div class="dot" style="background-color:white; height:8px; width: 8px; border-style: solid; border-width: 2px; border-color: black;"></div><br>Ocorrência
+        </div>
+        <p style="font-size:11px;"><i>FOGO CRUZADO 2016-2020</i></p>
+        <p>Cada geometria mostra a data e o número de pessoas feridas ou mortas entre civis e agentes de segurança a partir de 1 de outubro de 2016 até 30 de setembro de 2020</p>
+      </div>
+
+
+      <!-- Um novo nível começa aqui -->
+      <button class="accordion">Nível 3 / Grupos armados pelo domínio territorial</button>
+      <div class="panel">
+        <p>O datalab Fogo Cruzado, o Grupo de Estudos dos Novos Ilegalismos da Universidade Federal Fluminense, o Núcleo de Estudos da Violência da Universidade de São Paulo, o Disque-Denúncia e a plataforma digital Pista News forneceram os dados
+          para construir o mapa dos grupos armados do Rio de Janeiro para o ano de 2019</p>
+        <div class='row' style="text-align: center;">
+          <div class='label2'>
+            <div class="square2" style="border-color:#ff5668"></div><br>Comando Vermelho
+          </div>
+          <div class='label2'>
+            <div class="square2" style="border-color:#68bbaf"></div><br>Terceiro Comando Puro
+          </div>
+          <div class='label2'>
+            <div class="square2" style="border-color:#616161"></div><br>Amigo dos amigos
+          </div>
+          <div class='label2'>
+            <div class="square2" style="border-color:#2685c4"></div><br>Milicia
+          </div>
+          <div class='label2'>
+            <div class="square2" style="border-color:#c7a1ba"></div><br>Em disputa
+          </div>
+        </div>
+        <p style="font-size:11px;"><i>Fogo Cruzado, Disque-Denúncia, GENI-UFF, NEV-USP, PistaNews 2019</i></p>
+        <p>Cada geometria identifica qual grupo armado prevalece naquele território</p>
+      </div>
+
+      <!-- Um novo nível começa aqui -->
+      <button class="accordion">Nível 4 / Áreas afetadas por condições socioeconômicas, de saneamento e de moradia mais precárias (aglomerados subnormais)</button>
+      <div class="panel">
+        <p>O IBGE define o Aglomerado Subnormal como uma forma de ocupação irregular de terrenos de propriedade alheia para fins de habitação em áreas urbanas e, em geral, caracterizados por um padrão urbanístico irregular, carência de serviços
+          públicos essenciais e localização em áreas com restrição à ocupação.
+          Nessas áreas, residem, em geral, populações com condições socioeconômicas, de saneamento e de moradia mais precárias. Como agravante, muitos Aglomerados Subnormais possuem uma densidade de edificações extremamente elevada, o que pode
+          facilitar a disseminação do COVID-19.</p>
+        <div class='label2'>
+          <div class="square" style="border-color:#0099CC"></div><br>Aglomerado Subnormal
+        </div>
+        <p style="font-size:11px;"><i>IBGE, Aglomerados Subnormais 2019</i></p>
+        <p>Para cada geometria são fornecidos o número total de moradorxs e a porcentagem por raça/cor. Em relação à estimativa de domicílios ocupados, o dado tem como ponto de partida os dados do Censo Demográfico de 2010. </br></p>
+      </div>
+      <h2 id='' style="text-align: center;"><i>Comunidados</i></br></br></h2>
+    </div>
+
+    <script src='./js/basemap.js'></script>
+    <script src='./js/layers.js'></script>
+
+</body>
+
+</html>
