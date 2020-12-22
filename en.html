@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>RJ - Race/color and risk areas</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin="" />
+  <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js" integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og==" crossorigin=""></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+  <script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-pip/v0.0.2/leaflet-pip.js'></script>
+  <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+  <link href='./style/style.css' rel='stylesheet' />
+  <style type="text/css">
+  </style>
+</head>
+
+<body>
+  <div id="map"></div>
+
+  <div id='console'>
+    <h1 style="text-transform: uppercase;">Understand the geographical relationship between the risk areas and the race/color of the inhabitants</h1>
+    <h2 id='description' style="font-size:12px;">Maps have demonstrated the presence of spatial inequality produced by racial segregation within the Rio de Janeiro region. But what are the origins of risk faced by the inhabitants?</br>
+    On this map, you can see some of these risks. It is not perfect, many things are missing, but it is a means to have understanding of the city, set priorities, and structure strategies.</br>
+    Email contato@comunidados.org if you would like to cooperate on this map.</br></br>
+  <a href="http://www.comunidados.org/rj/raca-risco/pt.html"><i>PORTUGUÊS</i> →</a></h2>
+
+    <h2 id='descer'>↓</h2>
+
+    <div id='risco'>
+      <h2 id=''><b>What could you find on basemap?</b></br>Each colored dot represents an inhabitant. The color depends on how inhabitants answered the question "What race or color you are" from the 2010 IBGE survey (Branco, Preto, Amarelo, Pardo ou Indígena).
+      Data are old, but we are already waiting for the next survey in 2021</h2>
+
+      <div style=''>
+        <div class='row' style="text-align: center;"><b style='font-size:12px;align:center;'>1 point = 1  inhabitant</b></div>
+        <div class='row' style="text-align: center;">
+          <div class='label'>
+            <div class="dot color4EB1C4"></div><br>Branca
+          </div>
+          <div class='label'>
+            <div class="dot color964F48"></div><br>Preta
+          </div>
+          <div class='label'>
+            <div class="dot colorA66481"></div><br>Amarela
+          </div>
+          <div class='label'>
+            <div class="dot color997CA6"></div><br>Parda
+          </div>
+          <div class='label'>
+            <div class="dot color7897BF"></div><br>Indigena
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div id='risco'>
+
+      <h2 id=''><b>What levels could you review?</b></br>The levels you can find on this map are just some of the possible risk sources. Working together we can identify other levels, correlate them and manage these risks.</br></br></br><i>Select the level:</i></h2>
+
+      <div id="legend"></div>
+
+      <h2 id=''><i>Legend:</i></br></br></h2>
+
+      <button class="accordion">Layer 1 / Area prone to natural events (área de risco BATER)</button>
+      <div class="panel">
+        <p>The IBGE and the Centro Nacional de Monitoramento e Alerta de Desastres Naturais - CEMADEN define the risk area as susceptible to be affected by natural and/or induced phenomena or processes that cause adverse effect. People who inhabit these areas are exposed to physical integrity damage, material and property losses.</p>
+        <div class='label2'>
+          <div class="square"></div><br>Área de risco BATER
+        </div>
+        <p style="font-size:11px;"><i>IBGE, Population in risk areas in Brazil 2018</i></p>
+        <p>For each geometry the total number of inhabitants and the percentage by race/color are provided.</br></p>
+      </div>
+
+
+      <button class="accordion">Layer 2 / Gunfights that left civilians and/or security officers dead and/or injured. </button>
+      <div class="panel">
+        <p>Fogo Cruzado is a collaborative digital platform that collects data on armed conflict in the metropolitan regions of Rio de Janeiro and Recife.</p>
+        <div class='label2'>
+          <div class="dot" style="background-color:white; height:8px; width: 8px; border-style: solid; border-width: 2px; border-color: black;"></div><br>Occurrence
+        </div>
+        <p style="font-size:11px;"><i>FOGO CRUZADO 2016-2020</i></p>
+        <p>Each geometry provides date and number of people injured or killed among civilians and security officers from October 1, 2016 until September 30, 2020</p>
+      </div>
+
+
+      <button class="accordion">Layer 3 / Armed groups organized to control the territory</button>
+      <div class="panel">
+        <p>Fogo Cruzado datalab, the Grupo de Estudos dos Novos Ilegalismos da Universidade Federal Fluminense, the Núcleo de Estudos da Violência da Universidade de São Paulo, Disque-Denúncia and Pista News digital platform provided data to develop the map of armed groups in Rio de Janeiro for 2019</p>
+        <div class='row' style="text-align: center;">
+          <div class='label2'>
+            <div class="square2" style="border-color:#ff5668"></div><br>Comando Vermelho
+          </div>
+          <div class='label2'>
+            <div class="square2" style="border-color:#68bbaf"></div><br>Terceiro Comando Puro
+          </div>
+          <div class='label2'>
+            <div class="square2" style="border-color:#616161"></div><br>Amigo dos amigos
+          </div>
+          <div class='label2'>
+            <div class="square2" style="border-color:#2685c4"></div><br>Milicia
+          </div>
+          <div class='label2'>
+            <div class="square2" style="border-color:#c7a1ba"></div><br>Em disputa
+          </div>
+        </div>
+        <p style="font-size:11px;"><i>Fogo Cruzado, Disque-Denúncia, GENI-UFF, NEV-USP, PistaNews 2019</i></p>
+        <p>Each geometry identifies which armed group prevails in that territory</p>
+      </div>
+
+      <button class="accordion">Layer 4 / Areas affected by more precarious socioeconomic, sewerage and housing conditions (aglomerados subnormais)</button>
+      <div class="panel">
+        <p>IBGE defines the "Aglomerado Subnormal" as a form of land occupation for housing purposes in urban areas and, in general, characterized by an irregular urban pattern, lack of essential public services and location in areas with restricted occupation.
+        In these areas, generally live populations with more precarious socioeconomic, sanitation and housing conditions. Subnormal agglomerates have an extremely high density of buildings, which may facilitate the dissemination of pandemic like COVID-19.</p>
+        <div class='label2'>
+          <div class="square" style="border-color:#0099CC"></div><br>Aglomerado Subnormal
+        </div>
+        <p style="font-size:11px;"><i>IBGE, Aglomerados Subnormais 2019</i></p>
+        <p>For each geometry the total number of inhabitants and the percentage by race/color are provided. Regarding the estimate of occupied households, the data is based on the 2010 Demographic Census data. </br></p>
+      </div>
+
+
+      <h2 id=''style="text-align: center;"><i><a href="http://www.comunidados.org/en/">www.comunidados.org</a></i></br></br></h2>
+
+    </div>
+
+
+    <script>
+      var bounds = new L.LatLngBounds(new L.LatLng(-23.3, -44.4), new L.LatLng(-22.3, -42.8));
+
+      var map = L.map('map').setView([-22.884468, -43.247325], 12);
+      L.tileLayer('./{z}/{x}/{y}.jpg', {
+        minZoom: 11,
+        maxZoom: 14,
+        tms: false,
+        maxBounds: bounds,
+        attribution: 'IBGE, OpenStreetMap, NASA SRTM, Fogo Cruzado, Disque-Denúncia, GENI-UFF, NEV-USP, PistaNews',
+        //zoomControl: false
+      }).addTo(map);
+
+      map.removeControl(map.zoomControl);
+
+      map.setMaxBounds(bounds);
+
+
+      //style
+      var areas_risco = {
+        "color": "#ff0000",
+        "weight": 1,
+        "opacity": 0.5,
+        "fillOpacity": 0
+      }
+
+      var subs = {
+        "color": "#0099CC",
+        "weight": 1,
+        "opacity": 0.5,
+        "fillOpacity": 0
+      }
+
+      var oper = {
+        "radius": 2,
+        "fillColor": "#fff",
+        "color": "#000000",
+        "weight": 1,
+        "opacity": 1,
+        "fillOpacity": .1
+      }
+
+      function getColor(fac_name) {
+        return fac_name == "Comando Vermelho" ? '#ff5668' :
+          fac_name == "Terceiro Comando Puro" ? '#68bbaf' :
+          fac_name == "Amigo dos amigos" ? '#616161' :
+          fac_name == "Milicia" ? '#2685c4' :
+          fac_name == "Em disputa" ? '#c7a1ba' :
+          '#e7c90b';
+      }
+
+      function style(feature) {
+        return {
+          color: getColor(feature.properties.fac_name),
+          weight: 1,
+          opacity: 1,
+          fillColor: 'white',
+          dashArray: '2',
+          fillOpacity: 0.2
+        };
+      }
+
+      //oneachfeature conditions
+      function onEachFeature(feature, layer) {
+        //console.log(feature.properties.GEO_BATER);
+        layer.bindPopup("Codigo</br><b>Base Territorial Estatística de Área Risco - BATER</b> :  " + feature.properties.GEO_BATER + "</br></br>" + "<b>População em áreas de risco</b></br>Número de moradorxs : " + feature.properties.TOT +
+          "</br></br>Branca : " + feature.properties.P_BRANC + " %</br>Preta : " + feature.properties.P_PRET + " %</br>Amarela : " + feature.properties.P_AMAR + " %</br>Parda : " + feature.properties.P_PARD + " %</br>Indígena : " + feature.properties
+          .P_INDI + " %</br>");
+      }
+
+      //oneachfeature conditions
+      function sublabel(feature, layer) {
+        //console.log(feature.properties.GEO_BATER);
+        layer.bindPopup("<b>Aglomerado subnormal</b></br>Número de moradorxs : " + feature.properties.TOTAL +
+          "</br></br>Branca : " + feature.properties.pBRANCA + " %</br>Preta : " + feature.properties.pPRETA + " %</br>Amarela : " + feature.properties.pAMARELA + " %</br>Parda : " + feature.properties.pPARDA + " %</br>Indígena : " + feature.properties
+          .pINDIO + " %</br>");
+      }
+
+      function operacoeslabel(feature, layer) {
+        layer.bindPopup("Ocorrência</br><b>FOGO CRUZADO</b> :  " + feature.properties.id_ocorren + "</br></br>" + "Local :</br>" + "<b>" + feature.properties.local_ocor + "</b>" +
+          "</br>Data : " + feature.properties.data_ocorr + " </br></br>Mortes Civis : " + feature.properties.qtd_morto_ + " </br>Mortes Agentes : " + feature.properties.qtd_mort_1 + " </br>Feridos Civis : " + feature.properties.qtd_ferido +
+          " </br>Feridos Agentes : " + feature.properties
+          .qtd_feri_1 + " </br>");
+      }
+
+      function facoeslabel(feature, layer) {
+        layer.bindPopup("Grupo armado:</br><b>" + feature.properties.fac_name + "</b></br></br>" + "Local :</br>" + feature.properties.Name + "</b></br>");
+      }
+
+      //layer group
+
+      var operacoesl = L.layerGroup();
+      var subl = L.layerGroup();
+      var baterl = L.layerGroup();
+      var facoesl = L.layerGroup();
+
+      ///add map overlay layers
+
+      $.getJSON("operacoes.geojson", function(feature) {
+
+        var operacoes = L.geoJson(feature, {
+          pointToLayer: function(feature, latlng) {
+            return L.circleMarker(latlng, oper);
+          },
+          //style: oper,
+          onEachFeature: operacoeslabel
+        }).addTo(operacoesl);
+
+      });
+
+
+      $.getJSON("risk-count-rj-state.geojson", function(feature) {
+
+        var bater = L.geoJson(feature, {
+          style: areas_risco,
+          onEachFeature: onEachFeature
+        }).addTo(baterl);
+
+        L.control.zoom({
+          position: 'bottomleft'
+        }).addTo(map);
+
+      });
+
+
+      $.getJSON("subnormais.geojson", function(feature) {
+
+        var sub = L.geoJson(feature, {
+          style: subs,
+          onEachFeature: sublabel
+        }).addTo(subl);
+
+      });
+
+
+      $.getJSON("facoes-armadas.geojson", function(feature) {
+
+        var operacoes = L.geoJson(feature, {
+          pointToLayer: function(feature, latlng) {
+            return L.circleMarker(latlng, oper);
+          },
+          style: style,
+          onEachFeature: facoeslabel
+        }).addTo(facoesl);
+
+      });
+
+      ///control layers
+
+      var overlay = {
+        "Area prone to natural events": baterl,
+        "Gunfights that left civilians and/or security officers dead and/or injured": operacoesl,
+        "Armed groups organized to control the territory": facoesl,
+        "Areas affected by more precarious socioeconomic, sewerage and housing conditions": subl
+      };
+
+      var control = L.control.layers(overlay, null, {
+        collapsed: false
+      });
+      control.addTo(map);
+
+      // Call the getContainer routine.
+      var htmlObject = control.getContainer();
+      // Get the desired parent node.
+      var a = document.getElementById('legend');
+
+      // Finally append that node to the new parent.
+      function setParent(el, newParent) {
+        newParent.appendChild(el);
+      }
+      setParent(htmlObject, a);
+
+
+
+      baterl.addTo(map)
+      //operacoesl.addTo(map)
+      //facoesl.addTo(map)
+    </script>
+
+    <script>
+      var acc = document.getElementsByClassName("accordion");
+      var i;
+
+      for (i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("click", function() {
+          this.classList.toggle("active");
+          var panel = this.nextElementSibling;
+          if (panel.style.maxHeight) {
+            panel.style.maxHeight = null;
+          } else {
+            panel.style.maxHeight = panel.scrollHeight + "px";
+          }
+        });
+      }
+    </script>
+
+</body>
+
+</html>
