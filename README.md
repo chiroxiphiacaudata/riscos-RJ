@@ -6,7 +6,7 @@ Neste mapa, você pode ver alguns destes riscos. Não é perfeito, faltam muitas
 ![Riscos RJ imagem capa](riscos-RJ-capa.png)
 
 
-## O que você encontra no mapa base?
+### O que você encontra no mapa base?
 Cada ponto colorido representa um morador(a). A cor depende de como você respondeu à questão " de qual raça ou cor você é " para o censo de 2010 (Branco, Preto, Amarelo, Pardo ou Indígena). Os dados são antigos, mas já aguardamos o Censo Demográfico em 2021
-## Quais níveis você pode consultar?
+### Quais níveis você pode consultar?
 Os níveis que você encontra neste mapa são apenas algumas das possíveis origens de risco. Trabalhamos juntos para identificar outros níveis, relacioná-los e planejar a gestão desses riscos.
